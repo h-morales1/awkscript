@@ -85,7 +85,8 @@ END {
             }
         print "|====================="
         sal_avg = sal_sum / employee_ctr
-        print "employed on project: ", employee_ctr, "   ", "Average salary: ", sal_avg
+        #print "employed on project: ", employee_ctr, "   ", "Average salary: ", sal_avg
+        printf("employed on project: %s  Average Salary: %.2f\n", employee_ctr, sal_avg)
         print " "
         #total_employees += employee_ctr
         #total_sal += sal_sum
@@ -97,9 +98,7 @@ END {
     tot_sal_avg = total_sal / total_employees
     print " "
     print "Employees: ", total_employees, "Projects: ", total_projects
-    #print "Total Salary: ", total_sal
     printf("Total Salary: %.2f\n", total_sal)
-    #print "Employee Average Salary: ", tot_sal_avg
     printf("Employee Average Salary: %.2f", tot_sal_avg)
 
 }
