@@ -87,6 +87,6 @@ END {
     tot_sal_avg = total_sal / total_employees
     print "Employees: ", total_employees, "Projects: ", total_projects
     printf("Total Salary: %.2f\n", total_sal)
-    printf("Employee Average Salary: %.2f", tot_sal_avg)
+    printf("Employee Average Salary: %.2f\n", tot_sal_avg)
 
 }
