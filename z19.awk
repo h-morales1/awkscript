@@ -55,7 +55,15 @@ END {
                 # dont print if not working on project
             } else {
                 #print only employees working on specific project
-                print employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
+
+                #check if the employee is a pm
+                if (emp_ID == pm_id) {
+                    # print with an asterisk
+                    print "*", employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
+                } else {
+                    # just print a normal employee and not a pm
+                    print employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
+                }
             }
         print "\n"
     }
