@@ -6,6 +6,8 @@ BEGIN {
     project_managers[0] = 0
     projects[0] = ""
     who_s[0,0] = "" # project, emp_id = employee
+    total_sal = 0
+    total_employees = 0
 }
 
 /#/ {
@@ -43,9 +45,21 @@ $1 ~ /W/ {
 END {
     delete projects[0]
     delete employees[0]
+    employee_ctr = 0
+    sal_sum = 0
+    sal_avg = 0
+    #total_employees = 0
+    #total_sal = 0
+    tot_sal_avg = 0
+    total_projects = 0
+    for (emp in employees) {
+        total_employees++
+        total_sal += salaries[emp]
+    }
     #print who_s[projects[1], 140]
     #print job header
     for(job_id in projects) {
+        total_projects++
         print "=", projects[job_id], " ========="
         print "| ", "Name", "| ", "Title", "| ", "Salary", " |"
         print "================================="
@@ -60,12 +74,29 @@ END {
                 if (emp_ID == pm_id) {
                     # print with an asterisk
                     print "*", employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
+                    employee_ctr++ # increase employee count
+                    sal_sum += salaries[emp_ID] # add to salary sum
                 } else {
                     # just print a normal employee and not a pm
                     print employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
+                    employee_ctr++ # increase employee count
+                    sal_sum += salaries[emp_ID] # add to salary sum
                 }
             }
-        print "\n"
+        print "|====================="
+        sal_avg = sal_sum / employee_ctr
+        print "employed on project: ", employee_ctr, "   ", "Average salary: ", sal_avg
+        #total_employees += employee_ctr
+        #total_sal += sal_sum
+        employee_ctr = 0
+        sal_sum = 0
+        sal_avg = 0
     }
+
+    tot_sal_avg = total_sal / total_employees
+    print " "
+    print "Employees: ", total_employees, "Projects: ", total_projects
+    print "Total Salary: ", total_sal
+    print "Employee Average Salary: ", tot_sal_avg
 
 }
