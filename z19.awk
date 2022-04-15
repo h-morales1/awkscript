@@ -52,9 +52,10 @@ END {
         pm_id = project_managers[projects[job_id]]
         for(emp_ID in employees)
             if(who_s[projects[job_id], emp_ID] == "") {
-                #print who_s[projects[job_id], empID]
+                # dont print if not working on project
             } else {
-                print who_s[projects[job_id], empID]
+                #print only employees working on specific project
+                print employees[emp_ID], " | ", titles[emp_ID], " | ", salaries[emp_ID]
             }
         print "\n"
     }
